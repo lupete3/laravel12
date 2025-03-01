@@ -1,22 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
-
-Route::get('/test-sqlite', function () {
-    try {
-        DB::connection('sqlite')->getPdo();
-        return "Connexion à SQLite réussie !";
-    } catch (\Exception $e) {
-        return "Erreur de connexion : " . $e->getMessage();
-    }
-});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
